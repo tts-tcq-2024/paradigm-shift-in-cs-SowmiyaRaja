@@ -5,17 +5,23 @@ namespace paradigm_shift_csharp
 class Checker
 {
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
-        if(temperature < 0 || temperature > 45) {
-            Console.WriteLine("Temperature is out of range!");
-            return false;
-        } else if(soc < 20 || soc > 80) {
-            Console.WriteLine("State of Charge is out of range!");
-            return false;
-        } else if(chargeRate > 0.8) {
-            Console.WriteLine("Charge Rate is out of range!");
-            return false;
-        }
-        return true;
+    bool isTemperatureOk = temperature >= 0 && temperature <= 45;
+    bool isSocOk = soc >= 20 && soc <= 80;
+    bool isChargeRateOk = chargeRate <= 0.8;
+
+     if (!isTemperatureOk) {
+         Console.WriteLine("Temperature is out of range!");
+         return false;
+     } 
+     if (!isSocOk) {
+         Console.WriteLine("State of Charge is out of range!");
+         return false;
+     } 
+     if (!isChargeRateOk) {
+         Console.WriteLine("Charge Rate is out of range!");
+         return false;
+     }
+     return true;
     }
 
     static void ExpectTrue(bool expression) {
