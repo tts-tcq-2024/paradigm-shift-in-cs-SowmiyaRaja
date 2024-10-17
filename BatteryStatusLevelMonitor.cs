@@ -1,6 +1,6 @@
 using System;
 
-namespace ParadigmShiftCSharp
+namespace paradigm-shift-csharp
 {
     public partial class Checker
     {
