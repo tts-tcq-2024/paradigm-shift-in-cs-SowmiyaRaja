@@ -10,7 +10,7 @@ namespace paradigmShiftCsharp
         private const float _maxTemperature = 45;
         private const float _maxChargeRate = 0.8f;
       
-        public void ExpectTrue(bool expression)
+        private static void ExpectTrue(bool expression)
         {
             if (!expression)
             {
@@ -19,7 +19,7 @@ namespace paradigmShiftCsharp
             }
         }
 
-        public void ExpectFalse(bool expression)
+        private static void ExpectFalse(bool expression)
         {
             if (expression)
             {
@@ -28,14 +28,14 @@ namespace paradigmShiftCsharp
             }
         }
 
-        public bool BatteryIsOk(float temperature, float soc, float chargeRate)
+        private static bool BatteryIsOk(float temperature, float soc, float chargeRate)
         {
             return RangeChecker(temperature, _minTemperature, _maxTemperature, "Temperature", true) &&
                    RangeChecker(soc, _minSoC, _maxSoC, "State of Charge", true) &&
                    ChargeRateChecker(chargeRate, true);
         }
 
-        public bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
+        private static bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
         {
             if(isEarlyWarningRequired)
             {
@@ -47,7 +47,7 @@ namespace paradigmShiftCsharp
             return true;
         }
 
-        public bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
+        private static bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
         {
             if (input < lowerLimit || input > upperLimit)
             {
@@ -57,7 +57,7 @@ namespace paradigmShiftCsharp
             return true;
         }
 
-        public bool ChargeRateChecker(float chargeRate, bool isEarlyWarningRequired)
+        private static bool ChargeRateChecker(float chargeRate, bool isEarlyWarningRequired)
         {
             if(isEarlyWarningRequired)
             {
@@ -71,7 +71,7 @@ namespace paradigmShiftCsharp
             return true;
         }
 
-        private void ChargePeakWarning(float currentVal, float maxValue, string parameter)
+        private static void ChargePeakWarning(float currentVal, float maxValue, string parameter)
         {
             if (currentVal >= (maxValue - (maxValue * 0.05)) && currentVal <= maxValue)
             {
@@ -79,7 +79,7 @@ namespace paradigmShiftCsharp
             }
         }
 
-        private void DischargeWarning(float currentVal, float minValue, string parameter)
+        private static void DischargeWarning(float currentVal, float minValue, string parameter)
         {
             if (currentVal <= (minValue + (minValue * 0.05f)) && currentVal >= minValue)
             {
