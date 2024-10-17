@@ -4,9 +4,9 @@ namespace paradigmShiftCsharp
 {
     public partial class Checker
     {
-        private const float _minSoC = 20;
-        private const float _maxSoC = 80;
-        private const float _minTemperature = 0;
+        private const float _minSoC = 20f;
+        private const float _maxSoC = 80f;
+        private const float _minTemperature = 0f;
         private const float _maxTemperature = 45;
         private const float _maxChargeRate = 0.8f;
       
