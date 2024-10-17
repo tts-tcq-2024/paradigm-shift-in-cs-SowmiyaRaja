@@ -61,7 +61,7 @@ namespace ParadigmShiftCSharp
         {
             if(isEarlyWarningRequired)
             {
-                ChargePeakWarning(chargeRate, _maxChargeRate, "Charge Rate", true);
+                ChargePeakWarning(chargeRate, _maxChargeRate, "Charge Rate");
             }
             if (chargeRate > _maxChargeRate)
             {
