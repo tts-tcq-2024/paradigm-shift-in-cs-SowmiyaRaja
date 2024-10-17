@@ -32,7 +32,7 @@ namespace ParadigmShiftCSharp
         {
             return RangeChecker(temperature, _minTemperature, _maxTemperature, "Temperature", true) &&
                    RangeChecker(soc, _minSoC, _maxSoC, "State of Charge", true) &&
-                   ChargeRateChecker(chargeRate);
+                   ChargeRateChecker(chargeRate, true);
         }
 
         public bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
@@ -49,7 +49,7 @@ namespace ParadigmShiftCSharp
 
         public bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
         {
-            if (input < lowerLimit || input > maxValue)
+            if (input < lowerLimit || input > upperLimit)
             {
                 Console.WriteLine(parameter + "is out of range!");
                 return false;
@@ -57,14 +57,17 @@ namespace ParadigmShiftCSharp
             return true;
         }
 
-        public bool ChargeRateChecker(float chargeRate)
+        public bool ChargeRateChecker(float chargeRate, , bool isEarlyWarningRequired)
         {
+            if(isEarlyWarningRequired)
+            {
+                ChargePeakWarning(chargeRate, _maxChargeRate, "Charge Rate", true);
+            }
             if (chargeRate > _maxChargeRate)
             {
                 Console.WriteLine("Charge Rate is out of range!");
                 return false;
             }
-            ChargePeakWarning(chargeRate, _maxChargeRate, "Charge Rate", true);
             return true;
         }
 
