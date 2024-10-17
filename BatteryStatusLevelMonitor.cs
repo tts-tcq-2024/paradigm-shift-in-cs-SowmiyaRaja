@@ -2,7 +2,7 @@ using System;
 
 namespace ParadigmShiftCSharp
 {
-    partial class Checker
+    public partial class Checker
     {
         private const float _minSoC = 20;
         private const float _maxSoC = 80;
