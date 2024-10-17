@@ -39,8 +39,8 @@ namespace paradigmShiftCsharp
         {
             if(isEarlyWarningRequired)
             {
-                DischargeWarning(input, upperLimit, parameter);
-                ChargePeakWarning(input, lowerLimit, parameter);    
+                ChargePeakWarning(input, upperLimit, parameter);
+                DischargeWarning(input, lowerLimit, parameter);    
             }
 
             CheckLimits(input, lowerLimit, upperLimit, parameter);
