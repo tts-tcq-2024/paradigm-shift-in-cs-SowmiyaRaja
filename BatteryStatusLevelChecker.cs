@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 namespace paradigm_shift_csharp
 {
-class Checker
+public partial class Checker
 {
      static int Main() 
      {
