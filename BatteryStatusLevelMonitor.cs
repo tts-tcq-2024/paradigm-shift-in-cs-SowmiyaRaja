@@ -54,6 +54,7 @@ namespace ParadigmShiftCSharp
                 Console.WriteLine(parameter + "is out of range!");
                 return false;
             }
+            return true;
         }
 
         public static bool ChargeRateChecker(float chargeRate)
