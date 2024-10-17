@@ -4,11 +4,11 @@ namespace ParadigmShiftCSharp
 {
     class Checker
     {
-        private const float SocMin = 20;
-        private const float SocMax = 80;
-        private const float TempMin = 0;
-        private const float TempMax = 45;
-        private const float ChargeRateMax = 0.8;
+        private const float _minSoC = 20;
+        private const float _maxSoC = 80;
+        private const float _minTemperature = 0;
+        private const float _minTemperature = 45;
+        private const float _maxChargeRate = 0.8;
       
         public void ExpectTrue(bool expression)
         {
@@ -30,18 +30,22 @@ namespace ParadigmShiftCSharp
 
         public static bool BatteryIsOk(float temperature, float soc, float chargeRate)
         {
-            return RangeChecker(temperature, TempMin, TempMax, "Temperature", true) &&
-                   RangeChecker(soc, SocMin, SocMax, "SoC", true) &&
+            return RangeChecker(temperature, _minTemperature, _minTemperature, "Temperature", true) &&
+                   RangeChecker(soc, _minSoC, _maxSoC, "State of Charge", true) &&
                    ChargeRateChecker(chargeRate);
         }
 
-        public static bool RangeChecker(float input, float minValue, float maxValue, string parameter, bool validate)
+        public static bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
         {
-            DischargeWarning(input, maxValue, parameter, validate);
-            ChargePeakWarning(input, minValue, parameter, validate);
-            if (input < minValue || input > maxValue)
+            if(isEarlyWarningRequired)
             {
-                Console.WriteLine($"{parameter} is out of range!");
+                DischargeWarning(input, upperLimit, parameter);
+                ChargePeakWarning(input, lowerLimit, parameter);    
+            }
+            
+            if (input < lowerLimit || input > maxValue)
+            {
+                Console.WriteLine(parameter + "is out of range!");
                 return false;
             }
             return true;
@@ -49,28 +53,28 @@ namespace ParadigmShiftCSharp
 
         public static bool ChargeRateChecker(float chargeRate)
         {
-            if (chargeRate > ChargeRateMax)
+            if (chargeRate > _maxChargeRate)
             {
                 Console.WriteLine("Charge Rate is out of range!");
                 return false;
             }
-            ChargePeakWarning(chargeRate, ChargeRateMax, "Charge Rate", true);
+            ChargePeakWarning(chargeRate, _maxChargeRate, "Charge Rate", true);
             return true;
         }
 
-        private static void ChargePeakWarning(float currentVal, float maxValue, string parameter, bool validate)
+        private static void ChargePeakWarning(float currentVal, float maxValue, string parameter)
         {
-            if (validate && currentVal > (maxValue - (maxValue * 0.05f)) && currentVal < maxValue)
+            if (currentVal >= (maxValue - (maxValue * 0.05)) && currentVal <= maxValue)
             {
-                Console.WriteLine($"{parameter} is near the maximum range!");
+                Console.WriteLine($"{parameter}: Warning: Approaching charge-peak!");
             }
         }
 
-        private static void DischargeWarning(float currentVal, float minValue, string parameter, bool validate)
+        private static void DischargeWarning(float currentVal, float minValue, string parameter)
         {
-            if (validate && currentVal > (minValue + (minValue * 0.05f)) && currentVal > minValue)
+            if (currentVal <= (minValue + (minValue * 0.05f)) && currentVal >= minValue)
             {
-                Console.WriteLine($"{parameter} is near the minimum range!");
+                Console.WriteLine($"{parameter} : Warning: Approaching discharge!");
             }
         }
     }
