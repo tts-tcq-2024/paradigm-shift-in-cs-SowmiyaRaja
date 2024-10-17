@@ -57,7 +57,7 @@ namespace ParadigmShiftCSharp
             return true;
         }
 
-        public bool ChargeRateChecker(float chargeRate, , bool isEarlyWarningRequired)
+        public bool ChargeRateChecker(float chargeRate, bool isEarlyWarningRequired)
         {
             if(isEarlyWarningRequired)
             {
