@@ -28,14 +28,14 @@ namespace ParadigmShiftCSharp
             }
         }
 
-        public static bool BatteryIsOk(float temperature, float soc, float chargeRate)
+        public bool BatteryIsOk(float temperature, float soc, float chargeRate)
         {
             return RangeChecker(temperature, _minTemperature, _minTemperature, "Temperature", true) &&
                    RangeChecker(soc, _minSoC, _maxSoC, "State of Charge", true) &&
                    ChargeRateChecker(chargeRate);
         }
 
-        public static bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
+        public bool RangeChecker(float input, float lowerLimit, float upperLimit, string parameter, bool isEarlyWarningRequired)
         {
             if(isEarlyWarningRequired)
             {
@@ -47,7 +47,7 @@ namespace ParadigmShiftCSharp
             return true;
         }
 
-        public static bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
+        public bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
         {
             if (input < lowerLimit || input > maxValue)
             {
@@ -57,7 +57,7 @@ namespace ParadigmShiftCSharp
             return true;
         }
 
-        public static bool ChargeRateChecker(float chargeRate)
+        public bool ChargeRateChecker(float chargeRate)
         {
             if (chargeRate > _maxChargeRate)
             {
@@ -68,7 +68,7 @@ namespace ParadigmShiftCSharp
             return true;
         }
 
-        private static void ChargePeakWarning(float currentVal, float maxValue, string parameter)
+        private void ChargePeakWarning(float currentVal, float maxValue, string parameter)
         {
             if (currentVal >= (maxValue - (maxValue * 0.05)) && currentVal <= maxValue)
             {
@@ -76,7 +76,7 @@ namespace ParadigmShiftCSharp
             }
         }
 
-        private static void DischargeWarning(float currentVal, float minValue, string parameter)
+        private void DischargeWarning(float currentVal, float minValue, string parameter)
         {
             if (currentVal <= (minValue + (minValue * 0.05f)) && currentVal >= minValue)
             {
