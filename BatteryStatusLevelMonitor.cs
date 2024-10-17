@@ -51,7 +51,7 @@ namespace paradigmShiftCsharp
         {
             if (input < lowerLimit || input > upperLimit)
             {
-                Console.WriteLine(parameter + "is out of range!");
+                Console.WriteLine(parameter + " is out of range!");
                 return false;
             }
             return true;
