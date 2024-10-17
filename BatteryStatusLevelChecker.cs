@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-namespace paradigm-shift-csharp
+namespace paradigmShiftCsharp
 {
 public partial class Checker
 {
