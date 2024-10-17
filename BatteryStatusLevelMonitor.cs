@@ -7,7 +7,7 @@ namespace ParadigmShiftCSharp
         private const float _minSoC = 20;
         private const float _maxSoC = 80;
         private const float _minTemperature = 0;
-        private const float _minTemperature = 45;
+        private const float _maxTemperature = 45;
         private const float _maxChargeRate = 0.8f;
       
         public void ExpectTrue(bool expression)
@@ -30,7 +30,7 @@ namespace ParadigmShiftCSharp
 
         public bool BatteryIsOk(float temperature, float soc, float chargeRate)
         {
-            return RangeChecker(temperature, _minTemperature, _minTemperature, "Temperature", true) &&
+            return RangeChecker(temperature, _minTemperature, _maxTemperature, "Temperature", true) &&
                    RangeChecker(soc, _minSoC, _maxSoC, "State of Charge", true) &&
                    ChargeRateChecker(chargeRate);
         }
