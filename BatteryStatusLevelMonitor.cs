@@ -77,7 +77,5 @@ namespace ParadigmShiftCSharp
                 Console.WriteLine($"{parameter} : Warning: Approaching discharge!");
             }
         }
-    }
-    }
-    }
+    }    
 }
