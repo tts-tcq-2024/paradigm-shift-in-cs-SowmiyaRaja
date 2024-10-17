@@ -42,13 +42,18 @@ namespace ParadigmShiftCSharp
                 DischargeWarning(input, upperLimit, parameter);
                 ChargePeakWarning(input, lowerLimit, parameter);    
             }
-            
+
+            CheckLimits(input, lowerLimit, upperLimit, parameter);
+            return true;
+        }
+
+        public static bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
+        {
             if (input < lowerLimit || input > maxValue)
             {
                 Console.WriteLine(parameter + "is out of range!");
                 return false;
             }
-            return true;
         }
 
         public static bool ChargeRateChecker(float chargeRate)
