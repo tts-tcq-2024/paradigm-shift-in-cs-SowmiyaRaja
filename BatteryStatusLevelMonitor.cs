@@ -43,8 +43,7 @@ namespace paradigmShiftCsharp
                 DischargeWarning(input, lowerLimit, parameter);    
             }
 
-            CheckLimits(input, lowerLimit, upperLimit, parameter);
-            return true;
+           return CheckLimits(input, lowerLimit, upperLimit, parameter);
         }
 
         private static bool CheckLimits(float input, float lowerLimit, float upperLimit, string parameter)
